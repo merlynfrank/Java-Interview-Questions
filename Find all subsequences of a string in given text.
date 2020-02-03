@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * Find all Subsequences and return the starting index.
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    String p = "ab";
+    String s = "abbbaba";
+    p=p.toLowerCase();
+    s=s.toLowerCase();
+    int m = p.length();
+    int n = s.length();
+    List<Integer> start = new ArrayList<Integer>();
+    int[] pChar = new int[256];
+    int[] sChar = new int[256];
+    for(int i=0;i<p.length();i++){
+      pChar[p.charAt(i)]++;
+      sChar[s.charAt(i)]++;
+    }
+    
+    for(int i=m;i<n;i++){
+      if(compareArr(pChar, sChar))
+          start.add(i-m);
+      sChar[s.charAt(i)]++;
+      sChar[s.charAt(i-m)]--;
+    }
+    
+    if(compareArr(pChar, sChar))
+      start.add(n-m);
+    
+    System.out.println("Start Indices: "+start.toString());
+  }
+  
+  public static boolean compareArr(int [] pChar, int [] sChar){
+    
+    for(int i =0 ;i<256;i++)
+      if(pChar[i]!=sChar[i])
+        return false;
+    return true;
+  }
+}
+
