@@ -1,0 +1,79 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * LL traversal forward and backwards and detect cycles
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    LinkedListImpl ll = new LinkedListImpl();
+    ll.addNode(ll,1);
+    ll.addNode(ll,2);
+    ll.addNode(ll,3);
+    ll.addNode(ll,4);
+    
+    ll.printForward(ll,ll.head);
+    System.out.println();
+    ll.printReverse(ll,ll.head);
+    System.out.println();
+    System.out.println("LL has cycle: "+ll.hasCycle(ll.head));
+
+  }
+}
+
+
+class LinkedListImpl{
+  Node head = null;
+  
+  class Node{
+    int data;
+    Node next;
+    
+    public Node(int val){
+      data = val;
+      next=null;
+    }
+  }
+  
+  public void addNode(LinkedListImpl ll, int val){
+    Node new_node = new Node(val);
+    if(ll.head == null){
+      head = new_node;
+    }else{
+      Node last = ll.head;
+      
+      while(last.next!=null)
+        last=last.next;
+      last.next = new_node;
+    }
+      
+  }
+  public void printReverse(LinkedListImpl ll, Node current){
+    if(current==null)
+      return;
+    printReverse(ll,current.next);
+    System.out.print(" "+current.data);
+  }
+  public void printForward(LinkedListImpl ll, Node current){
+    if(current==null)
+      return;
+    System.out.print(" "+current.data);
+    printReverse(ll,current.next);
+  }
+  
+  public boolean hasCycle(Node head){
+    if(head==null) return false;
+    Node fast = head; Node slow = head;
+    while(fast!=null && slow!=null){
+      fast = fast.next.next;
+      slow = slow.next;
+      if(fast==slow) return true;
+    }
+    return false;
+    
+  }
+  
+
+}
+
