@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * Delete the middle element in stack
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    Stack<Integer> stk = new Stack<Integer>();
+    stk.push(1);
+    stk.push(2);
+    stk.push(3);
+    stk.push(4);
+    stk.push(5);
+    stk.push(6);
+    stk.push(7);
+    
+    System.out.println("top element: "+stk.peek());
+    System.out.println("Size: "+stk.size());
+    System.out.println("Element at : "+stk.elementAt(stk.size()/2));
+    
+    deleteMidElement(stk, stk.size(), 0);
+    System.out.println(stk.toString());
+  }
+  
+  public static void deleteMidElement(Stack<Integer> stk, int size, int start){
+    if(stk.empty() || start==size)
+      return;
+    int val = stk.pop();
+    deleteMidElement(stk, size, start+1);
+    if(start!=(size/2))
+      stk.push(val);
+  }
+}
+
