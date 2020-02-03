@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * Generate random string and return longest substring
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    
+    //Generate random sequence of String length 100 with spaces
+    
+   /* String alphanumeric ="abcdefghijklmnopqrstuvwxyz   ";
+    StringBuilder sb = new StringBuilder(100);
+    for(int i=0;i<100; i++){
+      int index = (int)(alphanumeric.length()*Math.random());
+      sb.append(alphanumeric.charAt(index));
+    }
+    System.out.println(sb.toString());
+    String [] words = sb.toString().split(" ");*/
+    
+    
+    /* Find the word in the array containing the longest substring and return both word and substring from the word array*/
+    String [] words = {"merlyn","erln","e","ly","n","m","g"};
+    int index = 0;
+    int maxLength=0;
+    int foundIn =0;
+    for(int i=0;i<words.length;i++)
+      for(int j=i+1;j<words.length;j++)
+        if(words[i].contains(words[j]))
+          if(maxLength<words[j].length()){
+            maxLength= words[j].length();
+            index=j;
+            foundIn = i;
+          }
+            
+    System.out.println("Longest substring length: "+maxLength+" word: "+words[index]+" present in word: "+words[foundIn]);
+   
+  }
+}
+
