@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * replace word with ***
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    String[] words = { "blue", "green", "red"};
+    String text = "I have a bikeblue, with redtassels, parked on the green!! grass under blue sky";
+    for(String word: words){
+      System.out.println(text.indexOf(word));
+      text = text.replace(text.substring(text.indexOf(word),text.indexOf(word)+word.length() ),"***");
+    }
+    //split by chars and replace
+    System.out.println(text);
+  }
+}
+
