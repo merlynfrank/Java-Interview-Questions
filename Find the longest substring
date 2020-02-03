@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * Find the longest Substring in O(n) time
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    String s = "abcabcd";
+    int length = longestNonduplicatedSubstring(s);
+    System.out.println(length);
+    
+  }
+  
+  public static int longestNonduplicatedSubstring(String s) {
+    int result = 0;
+    char[] letters = s.toCharArray();
+    boolean[] containsChar = new boolean[256];
+    int j = 0;
+    for (int i = 0; i < s.length(); i++) {
+      System.out.println("i:"+i);
+        if (containsChar[letters[i]]) {
+          System.out.println("j:"+j);
+            for (; j < i; j++) {
+                containsChar[letters[j]] = false;
+                if (s.charAt(j) == s.charAt(i)) {
+                    j++;
+                    break;
+                }
+            }
+        }
+        containsChar[letters[i]] = true;
+        result = Math.max(result, i-j+1);
+      System.out.println("i:"+i+" j:"+j);
+      
+    }
+    return result;
+}
+}
+
