@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * Check Balanced Paranthesis
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    String bracks = "(((()())))";
+    System.out.println("Braces are balanced: "+isBalanced(bracks));
+    
+  }
+  public static boolean isBalanced(String bracks){
+    Stack<Character> paranthChecker = new Stack<Character>();
+      for(char c: bracks.toCharArray()){
+        if(paranthChecker.empty())
+          paranthChecker.push(c);
+        else{
+          if(c=='(' && paranthChecker.peek()==')')
+            paranthChecker.pop();
+          else if(c==')' && paranthChecker.peek()=='(')
+            paranthChecker.pop();
+          else
+            paranthChecker.push(c);
+        }
+      }
+      if(paranthChecker.empty()) 
+        return true;
+    return false;
+  }
+}
