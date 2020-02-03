@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * String to int ATOI
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    
+    String str = "jyvbbk,9765hbm";
+    myAtoi(str); 
+    
+  }
+  public static void myAtoi(String str) {
+    if(str.matches("^(?!a-z)"))
+            System.out.println("Invalid start");
+    else{
+    str = str.replaceAll("[^-0-9]","");
+    
+      if(str.length()>0){
+          if(Integer.MIN_VALUE<=Integer.valueOf(str) && Integer.valueOf(str)                                                              <=Integer.MAX_VALUE)  
+            System.out.println(""+Integer.valueOf(str));
+          else
+            System.out.println(Integer.MIN_VALUE);
+
+      }
+    }
+  }
+}
+
