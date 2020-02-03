@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * Reverse a String char-wise and word-wise
+ */
+
+class Solution {
+  public static void main(String[] args) {
+     //reverseChar("hello there, my Dear friend!");
+     reverseWords("hello there, my Dear friend!");
+  
+  }
+  public static void reverseChar(String s){
+    int size = s.length();
+    char [] sChar = s.toCharArray();
+    char temp;
+    int j=0;
+    for(int i=0;i<size/2;i++){
+      j=size-i-1;
+      temp = sChar[i];
+      sChar[i]=sChar[j];
+      sChar[j]=temp;
+    }
+    System.out.println(new String(sChar));
+  }
+  public static void reverseWords(String s){
+    //remove numeric and spcl chars - only retain spaces and alphabets
+    s=s.replaceAll("[^ a-zA-Z]","");
+    String [] words = s.split(" ");
+    System.out.println(Arrays.toString(words));
+    StringBuilder sb = new StringBuilder();
+    int j=0;
+    for(int i=words.length-1;i>=0;i--){
+      sb.append(words[i]+" ");
+    }
+    System.out.println(sb.toString());
+  }
+}
+
